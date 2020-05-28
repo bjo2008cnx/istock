@@ -6,20 +6,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 /**
- *
  * @author chenguoxiang
  * @create 2018-07-13 15:42
  **/
 @Configuration
 public class SchedulerConfig {
-    @Autowired
-    private SpringJobFactory springJobFactory;
 
-    @Bean
-    public SchedulerFactoryBean schedulerFactoryBean() {
-        SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();
-        schedulerFactoryBean.setJobFactory(springJobFactory);
-        return schedulerFactoryBean;
-    }
+  @Autowired
+  private SpringJobFactory springJobFactory;
+
+  @Bean
+  public SchedulerFactoryBean schedulerFactoryBean() {
+    SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();
+    schedulerFactoryBean.setJobFactory(springJobFactory);
+    return schedulerFactoryBean;
+  }
 
 }

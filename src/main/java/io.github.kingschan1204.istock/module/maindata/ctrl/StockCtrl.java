@@ -18,63 +18,63 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class StockCtrl {
 
-    @Autowired
-    private StockService service;
-    @Autowired
-    private StockCodeInfoService stockCodeInfoService;
-    @Autowired
-    private StockCompanyService stockCompanyService;
-    @Autowired
-    private StockSpider spider;
+  @Autowired
+  private StockService service;
+  @Autowired
+  private StockCodeInfoService stockCodeInfoService;
+  @Autowired
+  private StockCompanyService stockCompanyService;
+  @Autowired
+  private StockSpider spider;
 
-    @RequestMapping("/stock/q")
-    public String queryStock(Integer page, Integer rows, String code, String type, String pb, String dy, String sidx, String sord) {
-        String order = (null == sord || sord.isEmpty()) ? "asc" : sord;
-        String field = (null == sidx || sidx.isEmpty()) ? "_id" : sidx;
-        return service.queryStock(page, rows, code, type, pb, dy, field, order);
+  @RequestMapping("/stock/q")
+  public String queryStock(Integer page, Integer rows, String code, String type, String pb, String dy, String sidx, String sord) {
+    String order = (null == sord || sord.isEmpty()) ? "asc" : sord;
+    String field = (null == sidx || sidx.isEmpty()) ? "_id" : sidx;
+    return service.queryStock(page, rows, code, type, pb, dy, field, order);
+  }
+
+
+  @ResponseBody
+  @RequestMapping(value = "/stock/refresh_code", method = RequestMethod.POST)
+  public String initCode() {
+    try {
+      stockCodeInfoService.refreshCode();
+      return "success";
+    } catch (Exception e) {
+      e.printStackTrace();
+      return e.getMessage();
     }
+  }
 
-
-    @ResponseBody
-    @RequestMapping(value = "/stock/refresh_code", method = RequestMethod.POST)
-    public String initCode() {
-        try {
-            stockCodeInfoService.refreshCode();
-            return "success";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return e.getMessage();
-        }
+  @ResponseBody
+  @RequestMapping(value = "/stock/refresh_company", method = RequestMethod.POST)
+  public String initCompany() {
+    try {
+      stockCompanyService.refreshStockCompany();
+      return "success";
+    } catch (Exception e) {
+      e.printStackTrace();
+      return e.getMessage();
     }
-
-    @ResponseBody
-    @RequestMapping(value = "/stock/refresh_company", method = RequestMethod.POST)
-    public String initCompany() {
-        try {
-            stockCompanyService.refreshStockCompany();
-            return "success";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return e.getMessage();
-        }
-    }
+  }
 
 
-    @ResponseBody
-    @RequestMapping(value = "/stock/mapReduce/5years_dy")
-    public String fiveYearsDy() {
-        service.calculateFiveYearsDy();
-        return "success";
-    }
+  @ResponseBody
+  @RequestMapping(value = "/stock/mapReduce/5years_dy")
+  public String fiveYearsDy() {
+    service.calculateFiveYearsDy();
+    return "success";
+  }
 
 
-    @ResponseBody
-    @RequestMapping(value = "/stock/mapReduce/5years_roe")
-    public String fiveYearsRoe() {
-        int endYear = StockDateUtil.getCurrentYear();
-        int startYear = endYear - 5;
-        service.calculateFiveYearsRoe(startYear,endYear);
-        return String.format("success:%s - %s", startYear, endYear);
-    }
+  @ResponseBody
+  @RequestMapping(value = "/stock/mapReduce/5years_roe")
+  public String fiveYearsRoe() {
+    int endYear = StockDateUtil.getCurrentYear();
+    int startYear = endYear - 5;
+    service.calculateFiveYearsRoe(startYear, endYear);
+    return String.format("success:%s - %s", startYear, endYear);
+  }
 
 }

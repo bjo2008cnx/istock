@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * spring boot 启动类
+ *
  * @author kings.chan
  */
 @Controller
@@ -19,19 +20,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Application {
 
 
-    @RequestMapping("/")
-    public String index() {
-        return "index";
-    }
+  @RequestMapping("/")
+  public String index() {
+    return "index";
+  }
 
-    @Bean
-    public InitQuartzTaskRunner startupRunner() {
-        return new InitQuartzTaskRunner();
-    }
+  @Bean
+  public InitQuartzTaskRunner startupRunner() {
+    return new InitQuartzTaskRunner();
+  }
 
-    public static void main(String[] args) {
-        SpringApplication sa = new SpringApplication(Application.class);
-        sa.setBannerMode(Banner.Mode.OFF);
-        sa.run( args);
-    }
+  public static void main(String[] args) {
+    SpringApplication sa = new SpringApplication(Application.class);
+    sa.setBannerMode(Banner.Mode.OFF);
+    sa.run(args);
+  }
 }

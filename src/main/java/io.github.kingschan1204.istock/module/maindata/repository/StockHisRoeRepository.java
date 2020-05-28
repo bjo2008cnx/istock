@@ -5,12 +5,10 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- *
- *
  * @author chenguoxiang
  * @create 2018-03-09 14:55
  **/
 @Repository
-public interface StockHisRoeRepository extends MongoRepository<StockHisRoe,String> {
+public interface StockHisRoeRepository extends MongoRepository<StockHisRoe, String> {
 
 }

@@ -6,11 +6,12 @@ import org.springframework.stereotype.Repository;
 
 /**
  * stock price dao define
+ *
  * @author chenguoxiang
  * @create 2018-02-01 15:46
  **/
 @Repository
-public interface StockDyQueueRepository extends PagingAndSortingRepository<StockDyQueue,String> {
+public interface StockDyQueueRepository extends PagingAndSortingRepository<StockDyQueue, String> {
 
 //    Page<Stock> queryAll(String code, Pageable pageable);
 

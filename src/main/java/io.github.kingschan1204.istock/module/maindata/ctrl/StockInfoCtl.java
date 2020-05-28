@@ -18,17 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
  **/
 @Controller
 public class StockInfoCtl {
-    private Logger log = LoggerFactory.getLogger(StockInfoCtl.class);
-    @Autowired
-    private StockInfoService stockInfoService;
 
-    @RequestMapping("/stock/info/{code}")
-    public String stockInfo(@PathVariable String code, Model model) {
-        JSONObject json= stockInfoService.getStockInfo(code);
-        StockVo stockVo = JSON.toJavaObject(json,StockVo.class);
-        model.addAttribute("pagetitle",String.format("%s-%s",code,stockVo.getName()));
-        model.addAttribute("data",json.toJSONString());
-        model.addAttribute("stock", JSON.toJSONString(stockVo));
-        return "/stock/info/stock_info";
-    }
+  private Logger log = LoggerFactory.getLogger(StockInfoCtl.class);
+  @Autowired
+  private StockInfoService stockInfoService;
+
+  @RequestMapping("/stock/info/{code}")
+  public String stockInfo(@PathVariable String code, Model model) {
+    JSONObject json = stockInfoService.getStockInfo(code);
+    StockVo stockVo = JSON.toJavaObject(json, StockVo.class);
+    model.addAttribute("pagetitle", String.format("%s-%s", code, stockVo.getName()));
+    model.addAttribute("data", json.toJSONString());
+    model.addAttribute("stock", JSON.toJSONString(stockVo));
+    return "/stock/info/stock_info";
+  }
 }

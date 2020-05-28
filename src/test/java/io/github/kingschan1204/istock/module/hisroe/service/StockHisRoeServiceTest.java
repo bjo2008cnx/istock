@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- *
  * @author chenguoxiang
  * @create 2018-03-09 15:02
  **/
@@ -16,12 +15,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class StockHisRoeServiceTest {
 
-    @Autowired
-    private StockHisRoeService service;
+  @Autowired
+  private StockHisRoeService service;
 
-    @Test
-    public void addStockHisRoe() throws Exception {
-        service.addStockHisRoe("601006");
-    }
+  @Test
+  public void addStockHisRoe() throws Exception {
+    service.addStockHisRoe("601006");
+  }
 
 }

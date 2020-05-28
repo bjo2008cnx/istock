@@ -1,3 +1,3 @@
 function () {
-    emit(this.code, {percent: this.roe, title: this.year})
+  emit(this.code, {percent: this.roe, title: this.year})
 }
